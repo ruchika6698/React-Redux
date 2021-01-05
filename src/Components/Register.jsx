@@ -99,16 +99,16 @@ export class Register extends React.Component {
    );
      let error =regexEmail.test(String(input))
        ? ""
-       : "Not a valid email";
-     if (error === "") {
-       this.setState({emailErrorStatus:this.props.emailErrorMessage});
-       this.setState({emailErrorMessage:error});
-       this.setState({emailValid:!this.props.emailValid});
-     } else {
-       this.setState({emailErrorStatus:!this.props.emailErrorMessage});
-       this.setState({emailErrorMessage:error});
-       this.setState({emailValid:this.props.emailValid});
-     }
+       : "Email is Invalid";
+       if (error === "") {
+         this.setState({ emailErrorStatus: false });
+         this.setState({ emailErrorMessage: error });
+         this.setState({ emailValid: true });
+       } else {
+         this.setState({ emailErrorStatus: true });
+         this.setState({ emailErrorMessage: error });
+         this.setState({ emailValid: false });
+       }
    };
    validatePassword = (input) => {
      const regexPassword = new RegExp(
@@ -117,16 +117,17 @@ export class Register extends React.Component {
      let error = regexPassword.test(String(input))
        ? ""
        : "Invalid Password";
-     if (error === "") {
-       this.setState({passwordErrorStatus:this.props.passwordErrorStatus});
-       this.setState({passwordErrorMessage:error});
-       this.setState({passwordValid:!this.props.passwordValid});
-     } else {
-       this.setState({passwordErrorStatus:!this.props.passwordErrorStatus});
-       this.setState({passwordErrorMessage:error});
-       this.setState({passwordValid:this.props.passwordValid});
-     }
+       if (error === "") {
+         this.setState({ passwordErrorStatus: false });
+         this.setState({ passwordErrorMessage: error });
+         this.setState({ passwordValid: true });
+       } else {
+         this.setState({ passwordErrorStatus: true });
+         this.setState({ passwordErrorMessage: error });
+         this.setState({ passwordValid: false });
+       }
    };
+ 
  
 
   //API Integration and Required field Validation
@@ -264,7 +265,6 @@ export class Register extends React.Component {
                   ),
                 }}
               />
-              <br />
               <span className="textline">
                 Passwords must be at least 8 characters.
               </span>

@@ -101,7 +101,9 @@ class Login extends Component {
     }
     this.props.user.forEach(element => {
       if(this.state.email===element.email){
+        console.log("User Login",element.email)
         if(this.state.password===element.password){
+          console.log("User pass",element.password)
           this.setState({ responseMessage: "Login Successful" });
           this.setState({ snackbarVarient: "success" });
           this.setState({ OpenSnackbar: true });
