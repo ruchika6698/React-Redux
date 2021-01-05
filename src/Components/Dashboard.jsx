@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../SCSS/Dashboard.scss";
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';  
@@ -29,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
 function Dashboard(props) {
   const classes = useStyles();
 
+  const [change, setChange] = useState(true); 
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -42,14 +44,21 @@ function Dashboard(props) {
           <Button color="inherit" onClick={() => props.history.push("/")}>Logout</Button>
         </Toolbar>
       </AppBar>
-      <h1 align="center">Welcome to Dashboard</h1>
+      <div> 
+        <button onClick = {() => setChange(!change)}> 
+          Click Here! 
+        </button> 
+        {change?<h1>Welcome to Dashboard</h1>: 
+                <h1>User Details</h1>} 
+      </div> 
+      <br/>
       <br/>
       <Table stickyHeader aria-label="sticky table" id='User'>  
           <TableHead>  
             <TableRow className="tableRow">  
               <TableCell align="center">First Name</TableCell>  
-              <TableCell align="center" >Last Name</TableCell>  
-              <TableCell align="center" >Email Id</TableCell>  
+              <TableCell align="center">Last Name</TableCell>  
+              <TableCell align="center">Email Id</TableCell>  
             </TableRow>  
           </TableHead>  
 

@@ -17,18 +17,6 @@ export class Register extends React.Component {
       password: "",
       firstName: "",
       lastName: "",
-      firstNameErrorStatus: false,
-      firstNameErrorMessage: "",
-      firstNameValid: false,
-      lastNameErrorStatus: false,
-      lastNameErrorMessage: "",
-      lastNameValid: false,
-      emailErrorStatus: false,
-      emailErrorMessage: "",
-      emailValid: false,
-      passwordErrorStatus: false,
-      passwordErrorMessage: "",
-      passwordValid: false,
       user:[]
     };
   }
@@ -130,7 +118,7 @@ export class Register extends React.Component {
  
  
 
-  //API Integration and Required field Validation
+  //Required field Validation
   Register = () => {
     let errorFirstname = this.state.firstName ? "" : "First Name is Required";
     if (errorFirstname === "") {
