@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState,useContext} from 'react';
 import "../SCSS/Dashboard.scss";
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';  
@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { connect } from "react-redux";
+import { Message } from "./Context";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,9 +29,12 @@ const useStyles = makeStyles((theme) => ({
 
 function Dashboard(props) {
   const classes = useStyles();
+  const message = useContext(Message)
 
-  const [change, setChange] = useState(true); 
-
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    alert("I am Clicked");
+  });
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -44,13 +48,13 @@ function Dashboard(props) {
           <Button color="inherit" onClick={() => props.history.push("/")}>Logout</Button>
         </Toolbar>
       </AppBar>
-      <div> 
-        <button onClick = {() => setChange(!change)}> 
-          Click Here! 
-        </button> 
-        {change?<h1>Welcome to Dashboard</h1>: 
-                <h1>User Details</h1>} 
-      </div> 
+      <div>
+      <h1 align="center">{message}</h1>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
       <br/>
       <br/>
       <Table stickyHeader aria-label="sticky table" id='User'>  
@@ -66,7 +70,7 @@ function Dashboard(props) {
           {  
               props.user.map((d, index) => {  
                 return <TableRow key={index}>  
-                  <TableCell component="th" scope="row" align="center">  
+                  <TableCell align="center">  
                     {d.firstName}  
                   </TableCell>  
                   <TableCell align="center">{d.lastName}</TableCell>  
